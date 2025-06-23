@@ -1,0 +1,48 @@
+header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.header__logo, .header__list, .header__button {
+
+    display: flex;
+    flex-direction: row;
+
+    padding: 0px;
+}
+
+.header__list {
+    list-style: none;
+
+}
+
+.header__item {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.red {
+    border: 1px red solid;
+}
+.green {
+    border: 1px green solid;
+}
+.blue {
+    border: 1px blue solid;
+}
