@@ -1,1 +1,22 @@
-<h1>Home --- this is the body section of the 'index.ejs' view</h1>
+<section class="articles">
+
+    <h2 class="article__heading">Here's the news:</h2>
+
+    <ul class="article-list">
+
+        <% data.forEach(article => { %>
+            
+            <li class="article-item">
+                <a href="<%= article.link %>">
+                    <span class="article-title"><%= article.title %></span>
+                    <span class="article-source"><%= article.source %></span>
+                    <span class="article-date"><%= article.date %></span>
+                    
+                </a>
+            </li>
+
+        <% }); %>
+
+    </ul>
+
+</section>
