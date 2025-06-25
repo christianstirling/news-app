@@ -1,6 +1,10 @@
-<section class="articles">
+<section class="title">
+    <h1 class="app-title"><%= locals.title %></h1>
+    <h3 class="app-description"><%= locals.description %></h3>
+</section>
 
-    <h2 class="article__heading">Here's the news:</h2>
+
+<section class="articles">
 
     <ul class="article-list">
 
@@ -18,5 +22,9 @@
         <% }); %>
 
     </ul>
+
+    <% if (nextPage !== null){ %>
+        <a href="/?page=<%= nextPage %>" class="pagination">View more articles...</a>
+    <% } %>
 
 </section>

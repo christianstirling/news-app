@@ -5,19 +5,60 @@ const router = express.Router()
 const Article = require('../models/Article')
 
 //Routes
+// router.get('', async (req, res) => {
+//     const locals = {
+//         title: 'Ergo News App',
+//         description: 'News application prototype created with Mongo, Express, and Node'
+//     }
+
+//     try {
+//         const data = await Article.find()
+//         console.log('* SERVER>ROUTES>MAIN: rendering VIEWS>INDEX.EJS')
+//         console.log('* SERVER>ROUTES>MAIN: applying the layout from VIEWS>LAYOUTS>MAIN.EJS')
+//         res.render('index', { locals, data })
+//     } catch (error) {
+//         console.log('* SERVER>ROUTES>MAIN: error! :( could not render page')
+//     }
+
+    
+// })
+
 router.get('', async (req, res) => {
-    const locals = {
-        title: 'Ergo News App',
-        description: 'News application prototype created with Mongo, Express, and Node'
-    }
+    
 
     try {
-        const data = await Article.find()
+
+        const locals = {
+            title: 'Ergo News App',
+            description: 'News application prototype created with Mongo, Express, and Node'
+        }
+
+        let perPage = 10
+        let page = req.query.page || 1
+
+        const data = await Article.aggregate([ { $sort: { dateCreated: -1 } } ])
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .exec()
+
+        const count = await Article.countDocuments()
+        const nextPage = parseInt(page) + 1
+        const hasNextPage = nextPage <= Math.ceil(count / perPage)
+
+
+
+
         console.log('* SERVER>ROUTES>MAIN: rendering VIEWS>INDEX.EJS')
         console.log('* SERVER>ROUTES>MAIN: applying the layout from VIEWS>LAYOUTS>MAIN.EJS')
-        res.render('index', { locals, data })
+        res.render('index', { locals, 
+            data,
+            current: page,
+            nextPage: hasNextPage ? nextPage : null 
+        })
+
     } catch (error) {
         console.log('* SERVER>ROUTES>MAIN: error! :( could not render page')
+        console.log(error)
     }
 
     
