@@ -1,30 +1,40 @@
 <header class="header">
-    <div class="header-top">
-        <a href="/" class="header-logo">News App</a>
 
-        <nav class="header-nav">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="/" class="">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/" class="">Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/" class="">Blank</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="header-top">
+            <div class="header-left">
 
-        <div class="header-search">
-            <%- include('./search.ejs') %>
+                <div class="name-container">
+                    <a href="/" class="header-name">Ergo News</a>
+                </div>
+
+            </div>
+
+            <div class="header-center">
+
+                <div class="logo-container">
+                    <img src="/img/saturn-logo-thin.png" alt="Saturn Ergonomics Logo">
+                </div>
+
+            </div>
+
+            <div class="header-right">
+
+                <div class="search-container">
+                    <%- include('./search.ejs') %>
+                </div>
+            </div>
+
+        </div>
+        <div class="header-bottom">
+
+            <%- include('./filter.ejs') %>
+    
         </div>
 
-    </div>
-    <div class="header-bottom">
+    
 
-        <%- include('./filter.ejs') %>
 
-    </div>
+
+    
     
 </header>

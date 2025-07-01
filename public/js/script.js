@@ -171,6 +171,13 @@ filterButtons.forEach(button => button.addEventListener('click', () => {
 
 searchInput.addEventListener('input', () => {
     searchText = searchInput.value.trim()
+    console.log(searchText)
+    if(searchText !== '') {
+        searchInput.classList.add('occupied')
+    } else {
+        searchInput.classList.remove('occupied')
+    }
+    console.log(searchInput.classList)
     debouncedResetAndFetchArticles()
 })
 
