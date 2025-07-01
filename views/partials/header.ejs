@@ -1,24 +1,30 @@
-<header class="header red">
-    <a href="/" class="header__logo green">News App</a>
+<header class="header">
+    <div class="header-top">
+        <a href="/" class="header-logo">News App</a>
 
-    <nav class="header__nav green">
-        <ul class="header__list">
-            <li class="header__item blue">
-                <a href="/" class="">Home</a>
-            </li>
-            <li class="header__item blue">
-                <a href="/" class="">Admin</a>
-            </li>
-            <li class="header__item blue">
-                <a href="/" class="">Blank</a>
-            </li>
-        </ul>
-    </nav>
+        <nav class="header-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" class="">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/" class="">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/" class="">Blank</a>
+                </li>
+            </ul>
+        </nav>
 
-    <div class="header__button green">
-        <button class="searchBtn" aria-expanded="false">
-            Search 
+        <div class="header-search">
+            <%- include('./search.ejs') %>
+        </div>
 
-        </button>
     </div>
+    <div class="header-bottom">
+
+        <%- include('./filter.ejs') %>
+
+    </div>
+    
 </header>

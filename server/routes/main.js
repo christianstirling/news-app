@@ -1,80 +1,84 @@
+// Import the express package and then set up the express app: router
+
 const express = require('express')
 const router = express.Router()
 
-// import the model for your news-app db items
+// Import the model for your news-app database documents
 const Article = require('../models/Article')
 
-//Routes
-// router.get('', async (req, res) => {
-//     const locals = {
-//         title: 'Ergo News App',
-//         description: 'News application prototype created with Mongo, Express, and Node'
-//     }
+// Routes:
 
-//     try {
-//         const data = await Article.find()
-//         console.log('* SERVER>ROUTES>MAIN: rendering VIEWS>INDEX.EJS')
-//         console.log('* SERVER>ROUTES>MAIN: applying the layout from VIEWS>LAYOUTS>MAIN.EJS')
-//         res.render('index', { locals, data })
-//     } catch (error) {
-//         console.log('* SERVER>ROUTES>MAIN: error! :( could not render page')
-//     }
-
-    
-// })
-
-router.get('', async (req, res) => {
-    
+// Main GET route: this one renders the EJS webpage
+router.get('/', async (req, res) => {
 
     try {
+        console.log('page rendered')
+        const articles = await Article.find({})
+        res.render('index', { articles })
 
-        const locals = {
-            title: 'Ergo News App',
-            description: 'News application prototype created with Mongo, Express, and Node'
-        }
-
-        let perPage = 10
-        let page = req.query.page || 1
-
-        const data = await Article.aggregate([ { $sort: { dateCreated: -1 } } ])
-        .skip(perPage * page - perPage)
-        .limit(perPage)
-        .exec()
-
-        const count = await Article.countDocuments()
-        const nextPage = parseInt(page) + 1
-        const hasNextPage = nextPage <= Math.ceil(count / perPage)
-
-
-
-
-        console.log('* SERVER>ROUTES>MAIN: rendering VIEWS>INDEX.EJS')
-        console.log('* SERVER>ROUTES>MAIN: applying the layout from VIEWS>LAYOUTS>MAIN.EJS')
-        res.render('index', { locals, 
-            data,
-            current: page,
-            nextPage: hasNextPage ? nextPage : null 
-        })
-
-    } catch (error) {
-        console.log('* SERVER>ROUTES>MAIN: error! :( could not render page')
-        console.log(error)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send('Server error')
     }
 
-    
 })
 
-// router.get('', (req, res) => {
-//     console.log('* SERVER>ROUTES>MAIN: rendering VIEWS>INDEX.EJS')
-//     console.log('* SERVER>ROUTES>MAIN: applying the layout from VIEWS>LAYOUTS>MAIN.EJS')
-//     res.render('index')
-// })
+// This route is used to build the JSON data for the articles that need to be shown
+// according to the selected categories.
+router.get('/articles', async (req, res) => {
 
-router.get('/about', (req, res) => {
-    console.log('* SERVER>ROUTES>MAIN: rendering VIEWS>ABOUT.EJS')
-    console.log('* SERVER>ROUTES>MAIN: applying the layout from VIEWS>LAYOUTS>MAIN.EJS')
-    res.render('about')
+    const { categories, searchText, page = 1, perPage = 3 } = req.query
+    let filter = {}
+
+    if (categories) {
+        const categoryList = categories.split(',')
+        filter.categories = { $in: categoryList }
+    }
+
+    if (searchText) {
+        const searchRegex = new RegExp(searchText, 'i')
+        filter.$or = [
+            { title: searchRegex },
+            { summary: searchRegex }
+        ]
+    }
+
+    const skip = (Number(page) - 1) * Number(perPage)
+
+    try {
+        const articles = await Article.find(filter)
+        .skip(skip)
+        .sort({ dateCreated: -1 })
+        .limit(Number(perPage))
+
+        const total = await Article.countDocuments(filter)
+
+        res.json({
+            articles,
+            hasMore: skip + articles.length < total
+        })
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: 'Server error' })
+    }
+
 })
+
+
+
+
+
+
+
+
+// This stuff is only here for the purpose of 'seeding' the database--adding in new data or
+// a bunch of new data all at once to fuill up the database.
+
+// Will probably move this to another file eventually so that we can set up an app that
+// can be used to populate the DB without having to mess with this code..
+
+
 
 // function insertArticleDatum () {
 //     Article.insertOne({
@@ -277,5 +281,8 @@ router.get('/about', (req, res) => {
 
 // insertArticleData()
 
-//Export
+
+
+
+// Export: router -- pulled by the app.js file
 module.exports = router

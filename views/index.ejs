@@ -1,30 +1,11 @@
-<section class="title">
-    <h1 class="app-title"><%= locals.title %></h1>
-    <h3 class="app-description"><%= locals.description %></h3>
+
+
+<section class="grid-container">
+    <div class="grid"></div>
+
+
 </section>
 
-
-<section class="articles">
-
-    <ul class="article-list">
-
-        <% data.forEach(article => { %>
-            
-            <li class="article-item">
-                <a href="<%= article.link %>">
-                    <span class="article-title"><%= article.title %></span>
-                    <span class="article-source"><%= article.source %></span>
-                    <span class="article-date"><%= article.date %></span>
-                    
-                </a>
-            </li>
-
-        <% }); %>
-
-    </ul>
-
-    <% if (nextPage !== null){ %>
-        <a href="/?page=<%= nextPage %>" class="pagination">View more articles...</a>
-    <% } %>
-
-</section>
+<div id="see-more-container">
+    <button id="see-more-button">See More</button>
+</div>

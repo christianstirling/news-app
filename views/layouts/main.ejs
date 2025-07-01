@@ -6,23 +6,34 @@
     <title><%= locals.title  %></title>
     <meta name="description" content="<%= locals.description %>">
     <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" defer src="/js/script.js"></script>
+    
 </head>
 <body>
 
 
     <div class="container">
-        <%- include('../partials/header.ejs') %>
-        <% console.log('* * VIEWS>LAYOUTS>MAIN.EJS: including VIEWS>PARTIALS>HEADER') %>
+
+
+        <div class="header-container">
+            <%- include('../partials/header.ejs') %>
+        </div>
+
+
+
+        <div class="main-container">
+            <main class="main">
+                <%- body %>
+            </main>
+        </div>
+            
+
+
+        <div class="footer-container">
+            <%- include('../partials/footer.ejs') %>
+        </div>
         
-        <main class="main">
-            <% console.log('* * VIEWS>LAYOUTS>MAIN.EJS: plugging in BODY from VIEWS>INDEX.EJS') %>
-            <%- body %>
-        </main>
-        
-        <%- include('../partials/footer.ejs') %>
-        <% console.log('* * VIEWS>LAYOUTS>MAIN.EJS: including VIEWS>PARTIALS>FOOTER') %>
     </div>
     
+    <script type="text/javascript" defer src="/js/script.js"></script>
 </body>
 </html>

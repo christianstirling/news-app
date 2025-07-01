@@ -8,7 +8,6 @@ const connectDB = require('./server/config/db')
 const app = express()
 const PORT = 3000 || process.env.PORT
 
-console.log('* APP: connecting to database...')
 connectDB()
 
 app.use(express.static('public'))
@@ -18,15 +17,12 @@ app.use(express.static('public'))
 app.use(expressLayout)
 
 app.set('layout', './layouts/main')
-// console.log('* APP: setting LAYOUT to MAIN in VIEWS>LAYOUTS')
 
 app.set('view engine', 'ejs')
-// console.log('* APP: setting VIEW ENGINE to EJS')
 
 
 
 app.use('/', require('./server/routes/main'))
-// console.log('* APP: importing ROUTES from SERVER')
 
 
 
@@ -34,5 +30,5 @@ app.use('/', require('./server/routes/main'))
 
 
 app.listen(PORT, () => {
-    console.log(`* APP: listening on port ${PORT}`)
+    console.log(`app listening: port ${PORT}`)
 })

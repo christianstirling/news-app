@@ -8,7 +8,7 @@ const ArticleSchema = new Schema({
     },
     categories: [{
         type: String,
-        enum: ['Professional Organizations', 'Research & Academia', "Regulations & Policy", "Industry", "Continuing Education", "Tools & Technology"] 
+        enum: ['Organizations', 'Academia', "Regulatory", "Industry", "Education", "Technology"] 
     }],
     title: {
         type: String,
