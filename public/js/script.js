@@ -13,7 +13,7 @@ const selectedCategories = new Set()
 let searchText = ''
 
 let currentPage = 1
-const perPage = 3
+const perPage = 12
 let hasMore = false
 
 
@@ -74,61 +74,58 @@ function appendArticles(articles) {
     articles.forEach(a => {
         const div = document.createElement('div')
         div.innerHTML = `
-            <div class="card-outer light-gray">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="front-outer">
-                            <div class="front-inner">
-                                <div class="card-top">
+            <div class="card-container">
+                <div class="card">
+                    <div class=card-front>
+                        <div class="card-top">
 
-                                    <div class="category-container">
-                                        <h1>${a.categories}</h1>
-                                    </div>
-
-                                    <div class="title-container">
-                                        <h1>${a.title}</h1>
-                                    </div>
-
-                                    <div class="source-container">
-                                        <h2>${a.source}</h2>
-                                    </div>
-
-                                    <div class="date-container">
-                                        <h2>${a.date}</h2>
-                                    </div>
-
-                                </div>
-                                <div class="card-bottom">
-
-                                    <div class="link-container">
-                                        <a href="${a.link}">Full article</a>
-                                    </div>
-
-                                </div>
-
+                            <div class="category-container hide">
+                                <h1>${a.categories}</h1>
                             </div>
+
+                            <div class="title-container">
+                                <h1>${a.title}</h1>
+                            </div>
+
+                            <div class="source-container">
+                                <h2>${a.source}</h2>
+                            </div>
+
+                            <div class="date-container">
+                                <h2>${a.date}</h2>
+                            </div>
+
                         </div>
+                        <div class="card-bottom">
+
+                            <div class="link-container">
+                                <a href="${a.link}" class="article-link">
+                                    <button class="article-button">Original Article</button>
+                                </a>
+                            </div>
+
+                            <div class="button-container">
+                                <button class="flip-button">Ergo* Summary</button>
+                            </div>
+
+                        </div>
+
                     </div>
+                    
 
                     <div class="card-back hide">
-                        <div class="back-outer">
-                            <div class="back-inner">
 
-                                <div class="card-top">
+                        <div class="card-top">
 
-                                    <div class="summary-container"></div>
+                            <div class="summary-container"></div>
 
-                                </div>
+                        </div>
 
 
-                                <div class="card-bottom">
+                        <div class="card-bottom">
 
-                                    <div class="link-container"></div>
-                                    
-                                </div>
-
-                            </div>
-
+                            <div class="link-container"></div>
+                            
                         </div>
 
                     </div>
@@ -179,6 +176,12 @@ searchInput.addEventListener('input', () => {
     }
     console.log(searchInput.classList)
     debouncedResetAndFetchArticles()
+})
+
+searchInput.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter') {
+        event.preventDefault()
+    }
 })
 
 seeMoreButton.addEventListener('click', () => {

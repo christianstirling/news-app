@@ -1,0 +1,185 @@
+/* HEADER styling -------------------------------------------------------------  */
+
+.header-container {
+    background-color: black;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.header-top, .header-bottom {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+
+
+   height: 50px;
+}
+
+.header-top {
+    margin-top: 10px;
+}
+
+
+.name-container > a {
+    font-size: 26px;
+
+    text-decoration: none;
+}
+
+
+.logo-container {
+    height: 40px;
+}
+
+.logo-container > img {
+    height: 100%;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 40px;
+}
+
+.search-form {
+    height: 30px;
+    width: 150px;
+}
+
+
+.search-input {
+    color: var(--light-gray);
+    background-color: #1b1b1b;
+    border: #303030 solid 1px;
+    border-radius: 3px;
+
+    height: 100%;
+    width: 100%;
+
+    outline: none;
+
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.search-input.occupied {
+    border: limegreen 1px solid;
+}
+
+
+
+
+
+
+/* Container holding all of the category buttons */
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 5px;
+
+    width: 100%;
+}
+
+
+
+
+
+/* All header sizes - button - base state */
+.filter-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    height: 30px;
+
+    color: white;
+    background-color: #1b1b1b;
+    border: #303030 1px solid;
+    border-radius: 3px;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.header-sm .filter-button .icon-container {
+    margin-left: 3px;
+}
+
+.header-sm .filter-button .label-container {
+    margin-right: 3px;
+}
+
+
+/* All header sizes - button - hover state */
+/* This works for all other buttons as well - including ones in cards in grid */
+.filter-button:hover {
+    background-color: black
+}
+
+/* All header sizes - button - ACTIVE: button selected - base state */
+.filter-button.active {
+    background-color: black;
+    border: limegreen 1px solid;
+    border-radius: 3px;
+}
+
+/* All header sizes - button - ACTIVE: button selected - hover state */
+.filter-button.active:hover {
+    background-color: #1b1b1b;
+}
+
+
+
+
+
+/* Small header - button - base state */
+.header-sm .filter-button {
+    /* display set to flex already */
+    justify-content: center;
+
+    gap: 0px;
+
+    flex-grow: 1;
+
+    width: 30px;
+    
+}
+
+/* Small header - button - hover state */
+.header-sm .filter-button:hover {
+    gap: 3px;
+
+    width: auto;
+}
+
+/* Small header - button labels - base form */
+.header-sm .label-container {
+    display: block;
+
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* Small header - button labels - hover state */
+.header-sm .filter-button:hover .label-container {
+    opacity: 1;
+    width: auto;
+}

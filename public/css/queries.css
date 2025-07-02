@@ -1,0 +1,45 @@
+
+
+
+/* Header queries */
+
+.header-lg {
+    display: none;
+}
+
+.header-sm .header-center {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .header-sm .header-center {
+        display: block;
+    }
+}
+
+@media (min-width: 1150px) {
+    .header-lg {
+        display: block;
+    }
+    .header-sm {
+        display: none;
+    }
+}
+
+
+
+
+
+/* Grid queries */
+
+@media (min-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
