@@ -6,6 +6,8 @@ const container = document.querySelector('.grid')
 const searchInput = document.querySelector('.search-input')
 const seeMoreButton = document.querySelector('#see-more-button')
 
+
+
 const debouncedResetAndFetchArticles = debounce(resetAndFetchArticles, 300)
 
 const selectedCategories = new Set()
@@ -76,61 +78,65 @@ function appendArticles(articles) {
         div.innerHTML = `
             <div class="card-container">
                 <div class="card">
-                    <div class=card-front>
-                        <div class="card-top">
+                    <div class="card-top">
 
-                            <div class="category-container hide">
-                                <h1>${a.categories}</h1>
-                            </div>
-
-                            <div class="title-container">
-                                <h1>${a.title}</h1>
-                            </div>
-
-                            <div class="source-container">
-                                <h2>${a.source}</h2>
-                            </div>
-
-                            <div class="date-container">
-                                <h2>${a.date}</h2>
-                            </div>
-
+                        <div class="category-container hide">
+                            <h1>${a.categories}</h1>
                         </div>
-                        <div class="card-bottom">
 
-                            <div class="link-container">
-                                <a href="${a.link}" class="article-link">
-                                    <button class="article-button">Original Article</button>
-                                </a>
-                            </div>
+                        <div class="image-container">
+                            <img src="/img/assp-logo.jpg"/>
+                        </div>
 
-                            <div class="button-container">
-                                <button class="flip-button">Ergo* Summary</button>
-                            </div>
+                        <div class="title-container">
+                            <h1>${a.title}</h1>
+                        </div>
 
+                        <div class="source-container">
+                            <h2>${a.source}</h2>
+                        </div>
+
+                        <div class="date-container">
+                            <h2>${a.date}</h2>
+                        </div>
+
+                        
+
+                    </div>
+
+
+
+
+                    <div class="card-middle hide">
+                        <div class="icon-container">
+                            <img src="/svg/openai-24-white.svg" alt="">
+                        </div>
+
+                        <div class="summary-container">
+                            <p>${a.summary}</p>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="card-bottom">
+
+                        <div class="link-container">
+                            <a href="${a.link}" class="article-link">
+                                <button class="article-button">Original Article</button>
+                            </a>
+                        </div>
+
+                        <div class="button-container">
+                            <button class="flip-button">Show Summary</button>
                         </div>
 
                     </div>
-                    
-
-                    <div class="card-back hide">
-
-                        <div class="card-top">
-
-                            <div class="summary-container"></div>
-
-                        </div>
-
-
-                        <div class="card-bottom">
-
-                            <div class="link-container"></div>
-                            
-                        </div>
-
-                    </div>
+                        
 
                 </div>
+
             </div>
         
         `
@@ -151,7 +157,6 @@ function debounce(func, delay) {
 // Part 3 - Event Listeners
 
 filterButtons.forEach(button => button.addEventListener('click', () => {
-    console.log(`${button.textContent} clicked!`)
 
     const category = button.getAttribute('data-category')
 
@@ -181,6 +186,21 @@ searchInput.addEventListener('input', () => {
 searchInput.addEventListener('keydown', (event) => {
     if(event.key === 'Enter') {
         event.preventDefault()
+    }
+})
+
+container.addEventListener('click', (event) => {
+    const button = event.target.closest('.flip-button')
+
+    if(button) {
+        button.classList.toggle('active')
+        
+        button.textContent = button.classList.contains('active') ? 'Hide Summary' : 'Show Summary';
+        
+        const card = button.closest('.card')
+        const summary = card.querySelector('.card-middle')
+
+        summary.classList.toggle('hide')
     }
 })
 

@@ -1,12 +1,16 @@
-
+.grid-container {
+    width: 100%;
+}
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
 
     column-gap: 10px;
 
     row-gap: 20px;
+
+
 }
 
 .grid * {
@@ -20,10 +24,23 @@
 
 
 
+
+
+
+
 .card {
     background-color: black;
     border: #303030 1px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+
+    overflow: hidden;
 }
+
+
+
 
 
 
@@ -54,35 +71,46 @@
 
 
 
-.card-front, .card-back {
-    /* margin: 5px; */
+/* TOP */
 
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: space-between;
+.card-top {
+    margin-top: 15px;
 
-    overflow: hidden;
 }
 
-/* TOP */
-.card-top {
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 10px;
+.card-top, .card-middle {
+    
 
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-/* All things directly inside the top section of the card - i.e. the containers */
-.card-top>div {
-    /* border: red 1px solid; */
+
+/* -----FRONT */
+
+.card-top div, .card-middle div {
+
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
+
+.image-container img {
+    width: 100%;
+    border-radius: 3px;
+    border: #303030 1px solid;
+}
+
+
 .title-container {
-    border-bottom: #303030 1px solid;;
+    border-bottom: #303030 1px solid;
+}
+
+
+.date-container h2 {
+
+    margin-bottom: 5px;
 }
 
 .card-top h1 {
@@ -97,7 +125,42 @@
 
 
 
-/* BACK------TOP */
+
+
+
+
+/* ----Middle*/
+
+.card-middle {
+    border-top: #303030 1px solid;
+    transition: max-height 0.3s ease;
+}
+
+.card-middle.active {
+    opacity: 1;
+    max-height: 1000px;
+}
+
+.card-middle .icon-container {
+    margin-top: 10px;
+    align-self: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* BOTTOM */
 
@@ -144,6 +207,11 @@
 
     transition: background-color 0.2s ease;
 
+}
+
+.flip-button.active {
+    border: limegreen 1px solid;
+    
 }
 
 
