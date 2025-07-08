@@ -124,12 +124,12 @@ function appendArticles(articles) {
 
                         <div class="link-container">
                             <a href="${a.link}" class="article-link">
-                                <button class="article-button heading-text">Original Article</button>
+                                <button class="article-button heading-text card-button-text">Original Article</button>
                             </a>
                         </div>
 
                         <div class="button-container">
-                            <button class="flip-button heading-text">Show Summary</button>
+                            <button class="flip-button heading-text card-button-text">Show Summary</button>
                         </div>
 
                     </div>
