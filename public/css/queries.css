@@ -20,8 +20,12 @@
         height: 40px;
     }
 
-    .flip-button, .article-button {
+    .flip-button, .article-button, .filter-button, .search-form {
         height: 40px;
+    }
+
+    .header-top, .header-bottom, .search-container {
+        height: 60px;
     }
 
 }
