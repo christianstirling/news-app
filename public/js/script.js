@@ -89,15 +89,15 @@ function appendArticles(articles) {
                         </div>
 
                         <div class="title-container">
-                            <h1>${a.title}</h1>
+                            <h1 class="heading-text">${a.title}</h1>
                         </div>
 
                         <div class="source-container">
-                            <h2>${a.source}</h2>
+                            <h2 class="subheading-text">${a.source}</h2>
                         </div>
 
                         <div class="date-container">
-                            <h2>${a.date}</h2>
+                            <h2 class="subheading-text">${a.date}</h2>
                         </div>
 
                         
@@ -113,7 +113,7 @@ function appendArticles(articles) {
                         </div>
 
                         <div class="summary-container">
-                            <p>${a.summary}</p>
+                            <p class="body-text">${a.summary}</p>
                         </div>
                     </div>
 
@@ -124,12 +124,12 @@ function appendArticles(articles) {
 
                         <div class="link-container">
                             <a href="${a.link}" class="article-link">
-                                <button class="article-button">Original Article</button>
+                                <button class="article-button heading-text">Original Article</button>
                             </a>
                         </div>
 
                         <div class="button-container">
-                            <button class="flip-button">Show Summary</button>
+                            <button class="flip-button heading-text">Show Summary</button>
                         </div>
 
                     </div>
@@ -193,6 +193,7 @@ container.addEventListener('click', (event) => {
     const button = event.target.closest('.flip-button')
 
     if(button) {
+        const wasExpanded = button.classList.contains('active')
         button.classList.toggle('active')
         
         button.textContent = button.classList.contains('active') ? 'Hide Summary' : 'Show Summary';
@@ -201,6 +202,16 @@ container.addEventListener('click', (event) => {
         const summary = card.querySelector('.card-middle')
 
         summary.classList.toggle('hide')
+
+        if(!wasExpanded) {
+            setTimeout(() => {
+                button.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end',
+                    inline: 'nearest'
+                })
+            }, 50)
+        }
     }
 })
 

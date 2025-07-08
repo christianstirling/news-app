@@ -1,4 +1,26 @@
 
+@media (max-width: 600px) {
+    .card-top h1 {
+        font-size: 2rem;
+    }
+
+    .card-top h2 {
+        font-size: 1rem;
+    }
+
+    .card-middle p {
+        font-size: 1.75rem;
+    }
+
+}
+
+
+
+
+
+
+
+
 
 
 /* Header queries */
@@ -14,6 +36,11 @@
 @media (min-width: 600px) {
     .header-sm .header-center {
         display: block;
+    }
+
+    header, main, footer {
+        margin-left: 40px;
+        margin-right: 40px;
     }
 }
 

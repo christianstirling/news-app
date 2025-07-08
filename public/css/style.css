@@ -7,6 +7,8 @@
     --medium-gray: #707070;
     --dark-gray: #3b3b3b;
 
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Source Serif Pro', serif;
 
 }
 
@@ -36,13 +38,13 @@ div {
 }
 
 main {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 header, main, footer {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 
@@ -69,9 +71,27 @@ body {
 
 /* Typography */
 
-h2 {
-    font-size: 16px;
+.heading-text {
+    font-family: var(--font-heading);
 }
+
+.subheading-text {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.body-text {
+
+    font-family: var(--font-body);
+}
+
+h2 {
+    /* font-size: 16px; */
+    font-size: 0.75rem;
+}
+
+
 
 
 
