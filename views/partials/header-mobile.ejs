@@ -4,7 +4,7 @@
         <div class="header-left">
 
             <div class="name-container">
-                <a href="/" class="header-name heading-text">Ergo News</a>
+                <a href="/" class="header-name name-text">Ergo News</a>
             </div>
 
         </div>
@@ -12,7 +12,7 @@
         <div class="header-center">
 
             <div class="logo-container">
-                <img src="/img/saturn-logo-thin.png" alt="Saturn Ergonomics Logo">
+                <img src="/img/saturn-logo-thin.png" alt="Saturn Ergonomics Logo" class="header-logo">
             </div>
 
         </div>
@@ -20,7 +20,10 @@
         <div class="header-right">
 
             <div class="search-container">
-                <%- include('./search.ejs') %>
+                <form action="search" class="search-form">
+                    <input type="text" placeholder="Enter search text" class="search-input search-text">
+                
+                </form>
             </div>
 
         </div>

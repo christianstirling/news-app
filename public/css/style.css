@@ -1,24 +1,5 @@
 /* VARIABLES */
 
-/* COLORS */
-
-:root {
-    --light-gray: #c8c8c8;
-    --medium-gray: #707070;
-    --dark-gray: #3b3b3b;
-
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Source Serif Pro', serif;
-
-}
-
-.medium-gray {
-    background-color: var(--medium-gray);
-}
-
-.light-gray {
-    background-color: var(--light-gray);
-}
 
 
 
@@ -50,45 +31,12 @@ header, main, footer {
 
 
 
-/* Colors */
-* {
-    color: white;
-}
-
-body {
-    background-color: #161616;
-}
-
-
 
 /* Sizing */
 
 .icon-container {
     height: 24px;
     width: 24px;
-}
-
-
-/* Typography */
-
-.heading-text {
-    font-family: var(--font-heading);
-}
-
-.subheading-text {
-    font-family: var(--font-heading);
-    font-weight: 400;
-    text-transform: uppercase;
-}
-
-.body-text {
-
-    font-family: var(--font-body);
-}
-
-h2 {
-    /* font-size: 16px; */
-    font-size: 0.75rem;
 }
 
 

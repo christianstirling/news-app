@@ -1,0 +1,109 @@
+/* Font variables */
+
+:root {
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Source Serif Pro', serif;
+}
+
+/* Default text settings - starting with mobile size and querying our way up to desktop */
+
+/* App name: ERGO NEWS in top left corner of the header */
+.name-text {
+    font-family: var(--font-heading);
+
+    font-size: 2rem;
+
+    text-decoration: none;
+}
+
+/* Any text inside the search bar, top right corner of header */
+.search-text {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+
+}
+
+/* Labels for each of the category filter buttons in the bottom of the header */
+.filter-text {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
+/* Article title - main thing on each card in the grid */
+.title-text {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+}
+
+/* Small text below the article title - includes the source and date */
+.info-text {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    /* font-size: 0.75rem; */
+}
+
+/* AI summary text - should be a different font more suited for long form text */
+.summary-text {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+}
+
+/* Text on the buttons that are in each card - includes the original article button and the ai summary button */
+.button-text {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
+
+
+
+
+
+/* Media query for desktop version @ >= 600px -- going to scale down the text size a bit */
+
+@media (min-width: 600px) {
+
+    .name-text {
+        font-family: var(--font-heading);
+    
+        font-size: 2,5rem;
+    
+        text-decoration: none;
+    }
+    
+    .search-text {
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+    
+    }
+    
+    .filter-text {
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+    }
+    
+    .title-text {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+    }
+    
+    .info-text {
+        font-weight: 400;
+        text-transform: uppercase;
+        font-family: var(--font-heading);
+        font-size: 0.6rem;
+    }
+    
+    .summary-text {
+        font-family: var(--font-body);
+        font-size: 1rem;
+    }
+    
+    .button-text {
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+    }
+
+}

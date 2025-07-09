@@ -1,0 +1,137 @@
+:root {
+    --border-gray: #303030;
+    --text-gray: #c8c8c8;
+
+    --background-gray: #1b1b1b;
+
+    --green: rgb(0, 128, 0);
+
+}
+
+* {
+    color: white;
+}
+
+body {
+    background: var(--background-gray);
+}
+
+.header-container {
+    background-color: black;
+}
+
+
+
+/* Search bar */
+
+.search-input {
+    color: white;
+    background-color: var(--background-gray);
+    border: var(--border-gray) solid 1px;
+}
+
+.search-input.occupied {
+    border: var(--green) 1px solid;
+}
+
+
+
+
+
+/* Filter buttons */
+
+.filter-button {
+    color: white;
+    background-color: var(--background-gray);
+    border: var(--border-gray) 1px solid;
+
+
+    transition: background-color 0.2s ease;
+}
+
+
+.filter-button:hover {
+    background-color: black
+}
+
+.filter-button.active-touch {
+    background-color: black
+}
+
+
+
+/* All header sizes - button - ACTIVE: button selected - base state */
+.filter-button.active {
+    background-color: black;
+    border: var(--green) 1px solid;
+}
+
+/* All header sizes - button - ACTIVE: button selected - hover state */
+.filter-button.active:hover {
+    background-color: var(--background-gray);
+}
+
+.filter-button.active.active-touch {
+    background-color: var(--background-gray);
+}
+
+
+
+/* Grid */
+
+.grid * {
+    color: var(--text-gray);
+}
+
+/* Card */
+
+.card {
+    background-color: black;
+    border: var(--border-gray) 1px solid;
+}
+
+/* Card top section */
+
+.card-image {
+    border: var(--border-gray) 1px solid;
+}
+
+.title-container {
+    border-bottom: #303030 1px solid;
+}
+
+/* Card middle section */
+
+.card-middle {
+    border-top: var(--border-gray) 1px solid;
+}
+
+/* Card bottom section */
+
+.card-bottom {
+    border-top: var(--border-gray) 1px solid;
+    background-color: black;
+}
+
+.card-button {
+    background-color: inherit;
+    color: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.card-button:hover {
+    background-color: #161616;
+}
+
+.card-button.active-touch {
+    background-color: #161616;
+}
+
+.link-container {
+    border-right: var(--border-gray) 1px solid;
+}
+
+.flip-button.active {
+    border: var(--green) 1px solid;
+}
+

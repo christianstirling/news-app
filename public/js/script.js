@@ -85,19 +85,19 @@ function appendArticles(articles) {
                         </div>
 
                         <div class="image-container">
-                            <img src="/img/assp-logo.jpg"/>
+                            <img class="card-image" src="/img/assp-logo.jpg"/>
                         </div>
 
                         <div class="title-container">
-                            <h1 class="heading-text">${a.title}</h1>
+                            <h1 class="title-text card-title">${a.title}</h1>
                         </div>
 
                         <div class="source-container">
-                            <h2 class="subheading-text">${a.source}</h2>
+                            <h2 class="info-text card-source">${a.source}</h2>
                         </div>
 
                         <div class="date-container">
-                            <h2 class="subheading-text">${a.date}</h2>
+                            <h2 class="info-text card-date">${a.date}</h2>
                         </div>
 
                         
@@ -113,7 +113,7 @@ function appendArticles(articles) {
                         </div>
 
                         <div class="summary-container">
-                            <p class="body-text">${a.summary}</p>
+                            <p class="summary-text card-summary">${a.summary}</p>
                         </div>
                     </div>
 
@@ -124,12 +124,12 @@ function appendArticles(articles) {
 
                         <div class="link-container">
                             <a href="${a.link}" class="article-link">
-                                <button class="article-button heading-text card-button-text">Original Article</button>
+                                <button class="article-button button-text card-button">Original Article</button>
                             </a>
                         </div>
 
                         <div class="button-container">
-                            <button class="flip-button heading-text card-button-text">Show Summary</button>
+                            <button class="flip-button button-text summary-button card-button">AI Summary</button>
                         </div>
 
                     </div>
@@ -151,6 +151,27 @@ function debounce(func, delay) {
         timeoutId = setTimeout(() => {
             func.apply(this, args)
         }, delay)
+    }
+}
+
+
+function isMobile() {
+    return /Mobi|Android/i.test(navigator.userAgent)
+}
+
+function setButtonEffects() {
+    if(isMobile()) {
+        const buttons = document.querySelectorAll('button')
+
+        buttons.forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.classList.add('active-touch')
+
+                setTimeout(() => {
+                    button.classList.remove('active-touch')
+                }, 2000)
+            })
+        })
     }
 }
 
@@ -196,22 +217,44 @@ container.addEventListener('click', (event) => {
         const wasExpanded = button.classList.contains('active')
         button.classList.toggle('active')
         
-        button.textContent = button.classList.contains('active') ? 'Hide Summary' : 'Show Summary';
         
         const card = button.closest('.card')
         const summary = card.querySelector('.card-middle')
 
         summary.classList.toggle('hide')
 
-        if(!wasExpanded) {
+        // IF_ELSE used to make the page scroll either down to include the bottom of the card when the 
+        // button is activated, or up to include the top of the card when the button is deactivated
+
+        if (!wasExpanded) {
             setTimeout(() => {
-                button.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'end',
-                    inline: 'nearest'
-                })
+
+              const rect = button.getBoundingClientRect()
+              const scrollY = window.scrollY || window.pageYOffset
+          
+              // Scroll down when the button is pressed,
+              // so the button is 10px above the bottom of the screen
+              const targetScroll = scrollY + rect.bottom - window.innerHeight + 10
+          
+              window.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+              })
+
             }, 50)
-        }
+          } else {
+            setTimeout(() => {
+
+                // Scroll to the top of the card when the button is deactivated
+                const cardTop = card.getBoundingClientRect().top + window.scrollY - 10
+
+                window.scrollTo({
+                    top: cardTop,
+                    behavior: 'smooth'
+                })
+
+              }, 50)
+          }
     }
 })
 
@@ -223,3 +266,4 @@ seeMoreButton.addEventListener('click', () => {
 // Part 4 - Main
 
 fetchArticles()
+

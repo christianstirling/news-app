@@ -1,0 +1,67 @@
+<template class="card-template">
+
+    <div class="card-container">
+        <div class="card">
+            <div class="card-top">
+
+                <div class="category-container hide">
+                    <h1>${a.categories}</h1>
+                </div>
+
+                <div class="image-container">
+                    <img src="/img/assp-logo.jpg"/>
+                </div>
+
+                <div class="title-container">
+                    <h1 class="heading-text">${a.title}</h1>
+                </div>
+
+                <div class="source-container">
+                    <h2 class="subheading-text">${a.source}</h2>
+                </div>
+
+                <div class="date-container">
+                    <h2 class="subheading-text">${a.date}</h2>
+                </div>
+
+                
+
+            </div>
+
+
+
+
+            <div class="card-middle hide">
+                <div class="icon-container">
+                    <img src="/svg/openai-24-white.svg" alt="">
+                </div>
+
+                <div class="summary-container">
+                    <p class="body-text">${a.summary}</p>
+                </div>
+            </div>
+
+
+
+
+            <div class="card-bottom">
+
+                <div class="link-container">
+                    <a href="${a.link}" class="article-link">
+                        <button class="article-button heading-text card-button-text">Original Article</button>
+                    </a>
+                </div>
+
+                <div class="button-container">
+                    <button class="flip-button heading-text card-button-text">Show Summary</button>
+                </div>
+
+            </div>
+                
+
+        </div>
+
+    </div>
+
+
+</template>
