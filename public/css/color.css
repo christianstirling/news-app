@@ -49,9 +49,11 @@ body {
     transition: background-color 0.2s ease;
 }
 
-
-.filter-button:hover {
-    background-color: black
+@media (hover:hover) {
+    .filter-button:hover {
+        background-color: black
+    }
+    
 }
 
 .filter-button.active-touch {
@@ -67,9 +69,13 @@ body {
 }
 
 /* All header sizes - button - ACTIVE: button selected - hover state */
-.filter-button.active:hover {
-    background-color: var(--background-gray);
+
+@media (hover:hover) {
+    .filter-button.active:hover {
+        background-color: var(--background-gray);
+    }  
 }
+
 
 .filter-button.active.active-touch {
     background-color: var(--background-gray);
@@ -119,9 +125,12 @@ body {
     transition: background-color 0.2s ease;
 }
 
-.card-button:hover {
-    background-color: #161616;
+@media (hover:hover) {
+    .card-button:hover {
+        background-color: #161616;
+    }
 }
+
 
 .card-button.active-touch {
     background-color: #161616;

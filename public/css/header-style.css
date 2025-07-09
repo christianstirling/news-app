@@ -166,11 +166,13 @@ header {
 
 /* Small header - button - hover state */
 
-
-.filter-button:hover {
-    gap: 3px;
-    width: auto;
+@media (hover:hover) {
+    .filter-button:hover {
+        gap: 3px;
+        width: auto;
+    }
 }
+
 
 .filter-button.active-touch {
     gap: 3px;
@@ -190,11 +192,13 @@ header {
 
 /* Small header - button labels - hover state */
 
-
-.filter-button:hover .label-container {
-    opacity: 1;
-    width: auto;
+@media (hover: hover) {
+    .filter-button:hover .label-container {
+        opacity: 1;
+        width: auto;
+    }
 }
+
 
 .filter-button.active-touch .label-container {
     opacity: 1;
