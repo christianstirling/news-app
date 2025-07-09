@@ -124,12 +124,12 @@ function appendArticles(articles) {
 
                         <div class="link-container">
                             <a href="${a.link}" class="article-link">
-                                <button class="article-button button-text card-button">Original Article</button>
+                                <button class="article-button button-text card-button button">Original Article</button>
                             </a>
                         </div>
 
                         <div class="button-container">
-                            <button class="flip-button button-text summary-button card-button">AI Summary</button>
+                            <button class="flip-button button-text summary-button card-button button">AI Summary</button>
                         </div>
 
                     </div>
@@ -161,7 +161,7 @@ function isMobile() {
 
 function setButtonEffects() {
     if(isMobile()) {
-        const buttons = document.querySelectorAll('button')
+        const buttons = document.querySelectorAll('.button')
 
         buttons.forEach(button => {
             button.addEventListener('touchstart', () => {
