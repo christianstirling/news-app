@@ -35,15 +35,19 @@ header {
     text-decoration: none;
 }
 
-
+/* container inside of header-center */
 .logo-container {
     height: 40px;
 }
 
-.logo-container > img {
+/* img inside logo-container */
+.header-logo {
     height: 100%;
 }
 
+
+
+/* container inside of header-right--pretty much fills up the whole header-right nox */
 .search-container {
     display: flex;
     flex-direction: row;
@@ -58,6 +62,7 @@ header {
     }
 }
 
+/* the search box itself--inside search-container */
 .search-form {
     height: 40px;
     width: 150px;
@@ -69,15 +74,13 @@ header {
     }
 }
 
-
+/* the search input text (or placeholder text) -- inside the search form */
 .search-input {
     border-radius: 3px;
+    outline: none;
 
     height: 100%;
     width: 100%;
-
-    outline: none;
-
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -89,6 +92,8 @@ header {
 
 
 /* Container holding all of the category buttons */
+/* Only thing inside of the header-bottom--does not take up all the space;
+    is centered top-to-bottom */
 .filter-container {
     display: flex;
     flex-direction: row;
@@ -200,7 +205,7 @@ header {
 }
 
 
-.filter-button.active-touch .label-container {
+.filter-button.active-touch.active .label-container {
     opacity: 1;
     width: auto;
 }
