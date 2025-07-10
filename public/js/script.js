@@ -163,8 +163,6 @@ function setButtonEffects() {
     if(isMobile()) {
         const buttons = document.querySelectorAll('.button')
 
-        console.log(buttons)
-
         buttons.forEach(button => {
             button.addEventListener('touchstart', () => {
                 button.classList.add('active-touch')
@@ -266,6 +264,6 @@ seeMoreButton.addEventListener('click', () => {
 })
 
 // Part 4 - Main
-
+setButtonEffects()
 fetchArticles()
 
