@@ -72,6 +72,12 @@ ul {
     border-radius: 3px;
 }
 
+@media (min-width: 600px) {
+    #see-more-button {
+        height: 50px;
+    }
+}
+
 
 
 

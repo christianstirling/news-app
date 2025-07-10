@@ -34,6 +34,28 @@ const perPage = 12
 let hasMore = false
 
 
+const clearButton = document.querySelector('.clear-button')
+
+searchInput.addEventListener('input', () => {
+    clearButton.style.display = searchInput.value ? 'block' : 'none'
+})
+
+clearButton.addEventListener('click', () => {
+    // Clear the search input
+    searchInput.value = ''
+    searchText = ''
+    searchInput.classList.remove('occupied')
+
+    clearButton.style.display = 'none'
+
+    // Reset current page and fetch articles
+    currentPage = 1
+    fetchArticles()
+})
+
+
+
+
 
 
 

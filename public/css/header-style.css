@@ -49,29 +49,27 @@ header {
 
 /* container inside of header-right--pretty much fills up the whole header-right nox */
 .search-container {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
 
-    height: 50px;
+    height: 40px;
 }
 
 @media (min-width: 600px) {
     .search-container {
-        height: 40px;
+        height: 30px;
     }
 }
 
 /* the search box itself--inside search-container */
 .search-form {
-    height: 40px;
-    width: 150px;
-}
-
-@media (min-width: 600px) {
-    .search-form {
-        height: 30px;
-    }
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 200px;
 }
 
 /* the search input text (or placeholder text) -- inside the search form */
@@ -82,7 +80,20 @@ header {
     height: 100%;
     width: 100%;
     padding-left: 5px;
-    padding-right: 5px;
+    padding-right: 30px;
+}
+
+.clear-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    display: none;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
 }
 
 

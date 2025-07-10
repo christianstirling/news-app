@@ -31,6 +31,11 @@ body {
     border: var(--green) 1px solid;
 }
 
+.clear-button {
+    color: var(--text-gray);
+    background-color: transparent;
+}
+
 
 
 

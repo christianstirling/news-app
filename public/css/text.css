@@ -23,6 +23,8 @@
 
 }
 
+
+
 /* Labels for each of the category filter buttons in the bottom of the header */
 .filter-text {
     font-family: var(--font-heading);
@@ -64,6 +66,12 @@
 #see-more-button {
     font-family: var(--font-heading);
     font-size: 0.75rem;
+}
+
+@media (min-width: 600px) {
+    #see-more-button {
+        font-size: 1.25rem;
+    }
 }
 
 
