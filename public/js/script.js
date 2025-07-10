@@ -163,6 +163,8 @@ function setButtonEffects() {
     if(isMobile()) {
         const buttons = document.querySelectorAll('.button')
 
+        console.log(buttons)
+
         buttons.forEach(button => {
             button.addEventListener('touchstart', () => {
                 button.classList.add('active-touch')
