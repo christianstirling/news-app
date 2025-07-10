@@ -146,7 +146,7 @@ function appendArticles(articles) {
                     <div class="card-bottom">
 
                         <div class="link-container">
-                            <a href="${a.link}" class="article-link">
+                            <a href="${a.link}" class="article-link" target="_blank">
                                 <button class="article-button button-text card-button button">Original Article</button>
                             </a>
                         </div>
@@ -247,10 +247,22 @@ function setButtonEffects() {
 
 
 
+
+function expandButton(label, delay) {
+
+    label.classList.remove('hide')
+    setTimeout(() => {
+        label.classList.add('hide')
+    }, delay);
+
+}
+
+
+
 // Part 3 - Event Listeners
 
     /*
-        
+
     */
 
 filterButtons.forEach(button => button.addEventListener('click', () => {
@@ -258,14 +270,27 @@ filterButtons.forEach(button => button.addEventListener('click', () => {
     const category = button.getAttribute('data-category')
 
     if(selectedCategories.has(category)) {
-        selectedCategories.delete(category)
         button.classList.remove('active')
+        selectedCategories.delete(category)
     } else {
-        selectedCategories.add(category)
         button.classList.add('active')
+        expandButton(button.querySelector('.label-container'), 1500)
+        selectedCategories.add(category)
     }
 
     resetAndFetchArticles()
+}))
+
+filterButtons.forEach(button => button.addEventListener('mouseenter', () => {
+    if(!isMobile()) {
+        button.querySelector('.label-container').classList.remove('hide')
+    }
+}))
+
+filterButtons.forEach(button => button.addEventListener('mouseleave', () => {
+    if(!isMobile()) {
+        button.querySelector('.label-container').classList.add('hide')
+    }
 }))
 
 searchInput.addEventListener('input', () => {
@@ -283,6 +308,7 @@ searchInput.addEventListener('input', () => {
 searchInput.addEventListener('keydown', (event) => {
     if(event.key === 'Enter') {
         event.preventDefault()
+        searchInput.blur()
     }
 })
 

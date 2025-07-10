@@ -136,12 +136,12 @@ header {
 
 /* removed the header-sm tag here*/
 .filter-button .icon-container {
-    margin-left: 3px;
+    margin-left: 1px;
 }
 
 /* removed the header-sm tag here*/
 .filter-button .label-container {
-    margin-right: 3px;
+    margin-right: 1px;
 }
 
 
@@ -161,27 +161,12 @@ header {
     /* display set to flex already */
     justify-content: center;
 
-    gap: 0px;
+    gap: 3px;
 
     flex-grow: 1;
 
-    width: 30px;
-    
-}
-
-/* Small header - button - hover state */
-
-@media (hover:hover) {
-    .filter-button:hover {
-        gap: 3px;
-        width: auto;
-    }
-}
-
-
-.filter-button.active-touch {
-    gap: 3px;
     width: auto;
+    
 }
 
 /* Small header - button labels - base form */
@@ -189,23 +174,7 @@ header {
 
 .label-container {
     display: block;
-
-    opacity: 0;
-    width: 0;
+    width: auto;
     overflow: hidden;
 }
 
-/* Small header - button labels - hover state */
-
-@media (hover: hover) {
-    .filter-button:hover .label-container {
-        opacity: 1;
-        width: auto;
-    }
-}
-
-
-.filter-button.active-touch.active .label-container {
-    opacity: 1;
-    width: auto;
-}

@@ -61,6 +61,16 @@
 
 
 
+#see-more-button {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+}
+
+
+
+
+
+
 /* Media query for desktop version @ >= 600px -- going to scale down the text size a bit */
 
 @media (min-width: 600px) {
