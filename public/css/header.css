@@ -1,0 +1,191 @@
+/* HEADER styling -------------------------------------------------------------  */
+
+
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-top, .header-bottom {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+
+   height: 60px;
+}
+
+@media (min-width: 600px) {
+    .header-top, .header-bottom {
+        height: 50px;
+    }
+}
+
+.header-top {
+    margin-top: 10px;
+}
+
+
+
+/* Things inside the top part of the header */
+
+.header-name {
+    font-size: 26px;
+
+    text-decoration: none;
+}
+
+/* container inside of header-center */
+.logo-container {
+    height: 40px;
+}
+
+/* img inside logo-container */
+.header-logo {
+    height: 100%;
+}
+
+
+
+/* container inside of header-right--pretty much fills up the whole header-right nox */
+.search-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 40px;
+}
+
+@media (min-width: 600px) {
+    .search-container {
+        height: 30px;
+    }
+}
+
+/* the search box itself--inside search-container */
+.search-form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 200px;
+}
+
+/* the search input text (or placeholder text) -- inside the search form */
+.search-input {
+    border-radius: 3px;
+    outline: none;
+
+    height: 100%;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 30px;
+}
+
+.clear-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    display: none;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+/* Container holding all of the category buttons */
+/* Only thing inside of the header-bottom--does not take up all the space;
+    is centered top-to-bottom */
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 5px;
+
+    width: 100%;
+}
+
+
+
+
+
+/* All header sizes - button - base state */
+.filter-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    height: 40px;
+    border-radius: 3px;
+
+    cursor: pointer;
+
+}
+
+@media (min-width: 600px) {
+    .filter-button {
+        height: 30px;
+    }
+}
+
+/* removed the header-sm tag here*/
+.filter-button .icon-container {
+    margin-left: 1px;
+}
+
+/* removed the header-sm tag here*/
+.filter-button .label-container {
+    margin-right: 1px;
+}
+
+
+
+/* All header sizes - button - ACTIVE: button selected - base state */
+.filter-button.active {
+    border-radius: 3px;
+}
+
+
+
+
+/* Small header - button - base state */
+
+
+.filter-button {
+    /* display set to flex already */
+    justify-content: center;
+
+    gap: 3px;
+
+    flex-grow: 1;
+
+    width: auto;
+    
+}
+
+/* Small header - button labels - base form */
+
+
+.label-container {
+    display: block;
+    width: auto;
+    overflow: hidden;
+}
+

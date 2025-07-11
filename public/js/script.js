@@ -296,7 +296,9 @@ filterButtons.forEach(button => button.addEventListener('click', () => {
         selectedCategories.delete(category)
     } else {
         button.classList.add('active')
-        expandButton(button.querySelector('.label-container'), 1500)
+        if(isMobile()) {
+            expandButton(button.querySelector('.label-container'), 1500)
+        }
         selectedCategories.add(category)
     }
 
