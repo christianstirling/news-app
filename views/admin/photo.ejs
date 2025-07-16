@@ -1,0 +1,62 @@
+<div class="photo-top admin-top">
+
+    
+    
+
+    <div class="pagebutton-container">
+
+        <a href="/admin/dashboard"><button class="">BACK TO DASHBOARD</button></a>
+
+        <a href="/admin/upload">
+            <button>UPLOAD A NEW PHOTO</button>
+        </a>
+
+    </div>
+
+    <div class="pagetitle-container"><h1 class="dashboard-title">Article Logo Photos</h1></div>
+
+    
+
+
+</div>
+
+
+
+
+<div class="admin-middle">
+    <ul class="articles-list">
+
+        <% images.forEach(image => { %>
+            <li class="article-item">
+
+
+                <div class="item-left">
+
+                    <h4><%= image %></h4>
+
+                </div>
+
+
+                <div class="item-right">
+
+
+                    <a href="">
+                        <button class="edit-button">EDIT</button>
+                    </a>
+
+                    <form action="" method="POST">
+                        <button type="submit" class="delete-button">DELETE</button>
+                    </form>
+
+
+                </div>
+
+            </li>
+        <% }) %>
+
+
+
+    </ul>
+
+
+</div>

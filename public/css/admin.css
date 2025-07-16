@@ -1,0 +1,228 @@
+:root {
+    --border-gray: #303030;
+    --text-gray: #c8c8c8;
+    --background-gray: #1b1b1b;
+    --green: rgb(0, 128, 0);
+
+
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Source Serif Pro', serif;
+}
+
+* {
+    font-family: var(--font-heading)
+}
+
+button {
+
+    cursor: pointer;
+    height: 30px;
+    padding: 0px 10px;
+    border-radius: 3px;
+
+    color: white;
+    background-color: var(--background-gray);
+    border: var(--border-gray) 1px solid;
+
+
+    transition: background-color 0.2s ease;
+}
+
+/* header (specifically for admin portal */
+
+.logout-button {
+    cursor: pointer;
+    height: 30px;
+    width: 100px;
+    padding: 0px 10px;
+    border-radius: 3px;
+}
+
+
+
+
+
+/* log in */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+    margin: 20px 0px;
+}
+
+
+
+
+
+/* area above the admin pages -- includes nav buttons relevant to the current admin page the user in on + pagetitle */
+
+.admin-top {
+    display: flex;
+    flex-direction: column;
+}
+
+.pagebutton-container {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+    border-bottom: var(--border-gray) 1px solid;
+}
+
+.pagetitle-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+
+.pagebutton-container button {
+    border: var(--border-gray) 1px solid;
+    cursor: pointer;
+    height: 30px;
+    width: auto;
+    padding: 0px 10px;
+    border-radius: 3px;
+    background-color: black;
+}
+
+
+
+
+
+/* dashboard */
+
+.article-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+}
+
+
+.article-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    border-top: var(--border-gray) 1px solid;
+    padding: 10px 15px;
+}
+
+.item-left {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+.item-right {
+    display: flex;
+    gap: 10px;
+}
+
+.item-right button {
+    cursor: pointer;
+    height: 30px;
+    padding: 0px 10px;
+    border-radius: 3px;
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+
+/* ----------------- new -------------------- */
+
+
+form {
+    border-top: var(--border-gray) 1px solid;
+}
+
+.text-input {
+    color: black;
+    width: 100%;
+    padding: 0px 5px;
+}
+
+fieldset {
+    margin: 10px 10px;
+    padding-bottom: 10px;
+    border-bottom: var(--border-gray) 1px solid;
+}
+legend {
+    margin-bottom: 5px;
+}
+
+.categories-fieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.image-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-option {
+    cursor: pointer;
+    border: transparent  2px solid;
+    display: inline-block;
+    transition: border 0.2s ease;
+}
+
+
+.image-option img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.image-option input:checked + img {
+    border: var(--green) 2px solid;
+}
+
+
+
+
+
+
+
+
+.form-actions{
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
+
+.form-actions button {
+    background-color: black;
+}

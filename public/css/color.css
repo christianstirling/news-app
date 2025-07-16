@@ -21,7 +21,7 @@ body {
 
 /* Search bar */
 
-.search-input {
+.search-input, .username-input, .password-input {
     color: white;
     background-color: var(--background-gray);
     border: var(--border-gray) solid 1px;
@@ -42,7 +42,7 @@ body {
 
 /* Filter buttons */
 
-.filter-button {
+.filter-button, .login-button, .edit-button, .delete-button, .logout-button {
     color: white;
     background-color: var(--background-gray);
     border: var(--border-gray) 1px solid;
@@ -50,6 +50,10 @@ body {
 
     transition: background-color 0.2s ease;
 }
+
+
+
+
 
 @media (hover:hover) {
     .filter-button:hover {

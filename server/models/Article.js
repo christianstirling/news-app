@@ -30,11 +30,15 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    dateCreated: {
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
         type: Date,
         default: Date.now
     }
     
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Article', ArticleSchema)

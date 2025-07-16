@@ -48,7 +48,7 @@ router.get('/articles', async (req, res) => {
     try {
         const articles = await Article.find(filter)
         .skip(skip)
-        .sort({ dateCreated: -1 })
+        .sort({ createdAt: -1 })
         .limit(Number(perPage))
 
         const total = await Article.countDocuments(filter)

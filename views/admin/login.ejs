@@ -1,0 +1,21 @@
+<div class="login-container">
+
+    <h1>LOGIN</h1>
+
+    <form action="/admin/login" method="POST">
+        <input type="text" name="username" placeholder="username" class="username-input" required />
+        <input type="password" name="password" placeholder="password" class="password-input" required />
+        <button type="submit" class="login-button button" >log in</button>
+
+        <% if(error) { %>
+            <p class="login-error"><%= error %></p>
+        <% } %>
+    </form>
+
+
+
+</div>
+
+
+
+

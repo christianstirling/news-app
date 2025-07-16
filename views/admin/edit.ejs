@@ -1,0 +1,117 @@
+<div class="edit-container">
+
+    <div class="edit-top admin-top">
+
+        <div class="pagebutton-container">
+            <a href="/admin/dashboard"><button class="">BACK TO DASHBOARD</button></a>
+
+            <form action="/admin/delete/<%= article._id %>" method="POST" class="delete-form">
+                <button type="submit" class="delete-button">DELETE THIS ARTICLE</button>
+            </form>
+        </div>
+
+        <div class="pagetitle-container"><h1 class="edit-title">Edit an Existing Article</h1></div>
+        
+        
+    </div>
+
+
+
+
+
+
+
+
+    <form action="/admin/edit/<%= article._id %>" method="POST" class="edit-middle">
+
+        <fieldset>
+            <legend>Title</legend>
+            <input type="text" name="title" value="<%= article.title %>" class="text-input" required>
+        </fieldset>
+
+        <fieldset class="categories-fieldset" >
+            <legend>Categories</legend>
+
+            <label for="">
+                <input type="checkbox" name="categories" value="Industry" <% if(article.categories.includes('Industry')){ %> checked <% } %>>
+                Industry
+            </label>
+
+            <label for="">
+                <input type="checkbox" name="categories" value="Regulatory" <% if(article.categories.includes('Regulatory')){ %> checked <% } %>>
+                Regulatory
+            </label>
+
+            <label for="">
+                <input type="checkbox" name="categories" value="Academia" <% if(article.categories.includes('Academia')){ %> checked <% } %>>
+                Research & Academia
+            </label>
+
+            <label for="">
+                <input type="checkbox" name="categories" value="Organizations" <% if(article.categories.includes('Organizations')){ %> checked <% } %>>
+                Professional Organizations
+            </label>
+
+            <label for="">
+                <input type="checkbox" name="categories" value="Education" <% if(article.categories.includes('Education')){ %> checked <% } %>>
+                Continuing Education
+            </label>
+
+            <label for="">
+                <input type="checkbox" name="categories" value="Technology" <% if(article.categories.includes('Technology')){ %> checked <% } %>>
+                Products & Technology
+            </label>
+
+            <label for="">
+                <input type="checkbox" name="categories" value="Health" <% if(article.categories.includes('Health')){ %> checked <% } %>>
+                Health & Wellness
+            </label>
+            
+        </fieldset>
+
+        <fieldset>
+            <legend>Source</legend>
+            <input type="text" value="<%= article.source %>" name="source" class="text-input" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Date</legend>
+            <input type="text" name="date" value="<%= article.date %>" class="text-input" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Image</legend>
+
+            <div class="image-select">
+
+                <% images.forEach(image => { %>
+
+                    <label for="" class="image-option">
+                        <% console.log(article.image) %>
+                        <% console.log(`/img/${image}`) %>
+                        <input type="radio" name="image" value="/img/<%= image %>"  <% if(article.image === `/img/${image}`){ %> checked <% } %> required>
+                        <img src="/img/<%= image %>" alt="<%= image %>">
+                    </label>
+
+                <% }) %>
+
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Summary</legend>
+            <textarea name="summary" value="" id="summary" rows="10" class="text-input" required><%= article.summary %></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Link</legend>
+            <input type="text" name="link" class="text-input" value="<%= article.link %>" required>
+        </fieldset>
+
+        <div class="form-actions"><button type="submit">Submit Updated Article</button></div>
+
+
+    </form>
+
+</div>

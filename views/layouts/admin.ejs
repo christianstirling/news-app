@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.title  %></title>
+    <meta name="description" content="<%= locals.description %>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="stylesheet" href="/css/queries.css">
+    
+    <link rel="stylesheet" href="/css/text.css">
+    <link rel="stylesheet" href="/css/color.css">
+
+    <link rel="stylesheet" href="/css/admin.css">
+
+    <link rel="stylesheet" href="/css/hide.css">
+</head>
+<body>
+
+
+    <div class="container">
+
+
+        <div class="header-container">
+            <div class="header-sm">
+                <%- include('../partials/admin-header.ejs') %>
+            </div>
+            
+        </div>
+
+
+        <div class="main-container">
+            <%- body  %>
+        </div>
+            
+
+
+        <div class="footer-container">
+            <%- include('../partials/footer.ejs') %>
+        </div>
+        
+    </div>
+    
+    <script type="text/javascript" defer src="/js/adminScript.js"></script>
+</body>
+</html>

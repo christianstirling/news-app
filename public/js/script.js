@@ -395,6 +395,19 @@ seeMoreButton.addEventListener('click', () => {
     fetchArticles(true)
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Part 4 - Main
 
 setButtonEffects()

@@ -1,0 +1,67 @@
+
+<div class="dashboard-top admin-top">
+
+    
+    
+
+    <div class="pagebutton-container">
+        <a href="/admin/new" >
+            <button class="new-button">CREATE NEW ARTICLE</button>
+        </a>
+
+        <a href="/admin/photo">
+            <button>VIEW PHOTOS</button>
+        </a>
+
+    </div>
+
+    <div class="pagetitle-container"><h1 class="dashboard-title">Admin Dashboard</h1></div>
+
+    
+
+
+</div>
+
+
+
+
+<div class="admin-middle">
+    <ul class="articles-list">
+
+        <% articles.forEach(article => { %>
+            <li class="article-item">
+
+
+                <div class="item-left">
+
+                    <h4><%= article.title %></h4>
+
+                </div>
+
+
+                <div class="item-right">
+
+
+                    <a href="/admin/edit/<%= article._id %>">
+                        <button class="edit-button">EDIT</button>
+                    </a>
+
+                    <form action="/admin/delete/<%= article._id %>" method="POST" class="delete-form">
+                        <button type="submit" class="delete-button">DELETE</button>
+                    </form>
+
+
+                </div>
+
+            </li>
+        <% }) %>
+
+
+
+    </ul>
+
+
+
+
+
+</div>

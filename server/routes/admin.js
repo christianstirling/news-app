@@ -1,0 +1,303 @@
+// Import the express package and then set up the express app: router
+
+const express = require('express')
+const router = express.Router()
+
+const bcrypt = require('bcrypt')
+
+// Import the model for your news-app database documents
+const Article = require('../models/Article')
+const Admin = require('../models/Admin')
+
+const adminLayout = 'layouts/admin'
+
+
+const fs = require('fs')
+const path = require('path')
+
+router.get('/api/images', (req, res) => {
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+function isAuthenticated(req, res, next) { // middleware to check if the user is authenticated
+    if (req.session && req.session.isAdmin) {
+      return next()
+    }
+    res.redirect('/admin/login')
+}
+
+async function createArticle(title, categories, source, date, image, summary, link) {
+    Article.create({
+        image,
+        categories,
+        title,
+        source,
+        date,
+        summary,
+        link
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+router.get('/admin/login', (req, res) => {
+    res.render('admin/login', {
+        layout: adminLayout, 
+        error: null
+    })
+})
+
+router.post('/admin/login', async (req, res) => {
+    const { username, password } = req.body
+
+    try {
+        const admin = await Admin.findOne({ username }) // looks for admin user in db by username
+
+        if(!admin) { // if cannot find username in db
+            return res.render('admin/login', {
+                layout: adminLayout,
+                error: 'Invalid username or password'
+            })
+        }
+
+        const isMatch = await bcrypt.compare(password, admin.password)
+
+        if(!isMatch) {
+            return res.render('admin/login', {
+                layout: adminLayout,
+                error: 'Invalid username or password'
+            })
+        }
+
+        req.session.isAdmin = true
+        req.session.adminId = admin._id
+
+        res.redirect('/admin/dashboard')
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Server error')
+    }
+})
+
+
+
+
+
+// log out
+
+router.post('/admin/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) { //check to see
+            console.error('Error destroying session:', err)
+            return res.status(500).send('Logout failed')
+        }
+
+        res.redirect('/admin/login')
+    })
+})
+
+
+
+
+
+
+router.get('/admin/dashboard', isAuthenticated, async (req, res) => {
+    const articles = await Article.find({})
+    .sort({ updatedAt: -1 })
+
+    res.render('admin/dashboard', {
+        layout: adminLayout,
+        articles
+    })
+})
+
+
+
+
+
+// gets the page containing the new article form
+
+router.get('/admin/new', isAuthenticated, async (req, res) => {
+    const imgDir = path.join(__dirname, '../../public/img') 
+    // stores the path to the logo images directory
+
+    const date = new Date()
+    const formattedDate = date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric'
+    })
+    // stores the current date formatted Month DD, YYYY
+
+    fs.readdir(imgDir, (err, files) => {
+        if (err) {
+            console.error('***Failed to read image directory', err)
+            return res.status(500).json({ error: 'cannot read images' })
+        }
+
+        const images = files.filter(file =>
+            /\.(png|jpe?g|gif|svg)$/i.test(file)
+        )
+        // stores all of the images
+
+        res.render('admin/new', {
+            layout: adminLayout,
+            images,
+            today: formattedDate
+        })
+        // render the page
+    })
+})
+
+
+// post -- when the new article is submitted from the new article creation form
+router.post('/admin/new', isAuthenticated, async (req, res) => {
+    try {
+        Article.create({
+            image: req.body.image,
+            categories: req.body.categories,
+            title: req.body.title,
+            source: req.body.source,
+            date: req.body.date,
+            summary: req.body.summary,
+            link: req.body.link
+        })
+
+        res.redirect('dashboard')
+    } catch (err) {
+
+        console.log('Error', err)
+        res.status(500).send('Server error')
+    }
+    
+})
+
+
+
+
+
+
+
+
+
+/* ------------------ edit ------------------ */
+
+router.get('/admin/edit/:id', isAuthenticated, async (req, res) => {
+    const { id } = req.params
+
+    const imgDir = path.join(__dirname, '../../public/img') 
+    // stores the path to the logo images directory
+
+
+
+    try {
+        const article = await Article.findById(id)
+        if (!article) {
+            return res.status(404).send('Article not found')
+        }
+
+        fs.readdir(imgDir, (err, files) => {
+            if (err) {
+                console.error('***Failed to read image directory', err)
+                return res.status(500).json({ error: 'cannot read images' })
+            }
+    
+            const images = files.filter(file =>
+                /\.(png|jpe?g|gif|svg)$/i.test(file)
+            )
+            // stores all of the images
+    
+            res.render('admin/edit', {
+                layout: adminLayout,
+                images,
+                article
+            })
+            // render the page
+        }) 
+    } catch (err) {
+        console.error('Failed to render page', err)
+        res.status(500).send('Server error')
+    }
+})
+
+
+router.post('/admin/edit/:id', isAuthenticated, async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const article = await Article.findById(id)
+
+        if(!article) {
+            return res.status(404).send('Article not found')
+        }
+
+        article.image = req.body.image,
+        article.categories = req.body.categories,
+        article.title = req.body.title,
+        article.source = req.body.source,
+        article.date = req.body.date,
+        article.summary = req.body.summary,
+        article.link = req.body.link
+
+        await article.save()
+
+        res.redirect('../dashboard')
+
+    } catch (err) {
+        console.error('Error', err)
+        res.status(500).send('Server error')
+    }
+    
+})
+
+
+
+
+
+/* ---------------delete --------------*/
+
+router.post('/admin/delete/:id', isAuthenticated, async (req, res) => {
+    const { id } = req.params
+    try {
+        await Article.findByIdAndDelete(id)
+
+        res.redirect('../dashboard')
+    } catch (err) {
+
+        console.error('Error', err)
+        res.status(500).send('Server error')
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = router
