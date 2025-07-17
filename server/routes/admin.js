@@ -27,6 +27,32 @@ router.get('/api/images', (req, res) => {
 
 
 
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../../public/img'))
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({ storage })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function isAuthenticated(req, res, next) { // middleware to check if the user is authenticated
@@ -56,7 +82,7 @@ async function createArticle(title, categories, source, date, image, summary, li
 
 
 
-
+// --------------- log in ----------------
 
 
 router.get('/admin/login', (req, res) => {
@@ -102,7 +128,7 @@ router.post('/admin/login', async (req, res) => {
 
 
 
-// log out
+// -------------- log out ----------------
 
 router.post('/admin/logout', (req, res) => {
     req.session.destroy(err => {
@@ -120,6 +146,8 @@ router.post('/admin/logout', (req, res) => {
 
 
 
+// dashboard that shows the articles
+
 router.get('/admin/dashboard', isAuthenticated, async (req, res) => {
     const articles = await Article.find({})
     .sort({ updatedAt: -1 })
@@ -133,6 +161,10 @@ router.get('/admin/dashboard', isAuthenticated, async (req, res) => {
 
 
 
+
+
+
+// --------- new ------------
 
 // gets the page containing the new article form
 
@@ -170,6 +202,7 @@ router.get('/admin/new', isAuthenticated, async (req, res) => {
 
 
 // post -- when the new article is submitted from the new article creation form
+
 router.post('/admin/new', isAuthenticated, async (req, res) => {
     try {
         Article.create({
@@ -273,6 +306,11 @@ router.post('/admin/edit/:id', isAuthenticated, async (req, res) => {
 
 
 
+
+
+
+
+
 /* ---------------delete --------------*/
 
 router.post('/admin/delete/:id', isAuthenticated, async (req, res) => {
@@ -292,6 +330,122 @@ router.post('/admin/delete/:id', isAuthenticated, async (req, res) => {
 
 
 
+
+
+
+/* --------------- photos --------------*/
+
+router.get('/admin/photo', isAuthenticated, async (req, res) => {
+
+    const imgDir = path.join(__dirname, '../../public/img') 
+
+
+    try {
+
+        fs.readdir(imgDir, (err, files) => {
+
+            if (err) { // checks for error with locating the image files
+                console.error('***Failed to read image directory', err)
+                return res.status(500).json({ error: 'cannot read images' })
+            }
+    
+            const images = files.filter(file =>
+                /\.(png|jpe?g|gif|svg)$/i.test(file) // filters for real images
+            )
+            // stores all of the images
+    
+            res.render('admin/photo', {
+                layout: adminLayout,
+                images
+            })
+            // render the page
+        }) 
+
+    } catch (err) { // server error
+        console.error('Failed to render page', err)
+        res.status(500).send('Server error')
+    }
+    
+
+})
+
+// delete photo
+
+router.post('/admin/photo/delete/:image', isAuthenticated, async (req, res) => {
+    const { image } = req.params
+    const imgDir = path.join(__dirname, `../../public/img/${image}`)
+
+    try {
+
+        fs.unlink(imgDir, (err) => {
+            if (err) {
+                console.error('***Failed to read image directory', err)
+                return res.status(500).json({ error: 'cannot read images' })
+            } 
+            console.log('File deleted successfully.')
+
+            res.redirect('..')
+        })
+
+    } catch {
+        console.error('Error', err)
+        res.status(500).send('Server error')
+    }
+})
+
+
+
+
+
+
+
+
+// get route for the upload photo page 
+
+router.get('/admin/upload', isAuthenticated, async (req, res) => {
+
+
+    try {
+
+        res.render('admin/upload', { layout: adminLayout })
+
+    } catch (err) {
+        console.error('Error', err)
+        res.status(500).send('Server error')
+    }
+})
+
+router.post('/admin/upload', isAuthenticated, upload.single('imageFile'), (req, res) => {
+
+    if(!req.file) {
+        return res.status(400).send('No file uploaded')
+    }
+
+    try {
+
+        const customName = req.body.filename
+        const extension = path.extname(req.file.originalname)
+
+        const oldPath = req.file.path
+        const newPath = path.join(req.file.destination, customName + extension)
+        fs.rename(oldPath, newPath, (err) => {
+            if(err) {
+
+                console.error('Failed to rename image', err)
+                return res.status(500).json({ error: 'cannot rename image' })
+            }
+
+
+        console.log(`Image uploaded successfully: ${req.body.filename}`)
+        res.redirect('photo')
+
+        })
+
+    } catch (err) {
+        console.error('Error', err)
+        res.status(500).send('Server error')
+    }
+})
 
 
 

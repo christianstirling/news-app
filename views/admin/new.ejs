@@ -5,7 +5,7 @@
         <div class="pagebutton-container">
             <a href="/admin/dashboard"><button class="">BACK TO DASHBOARD</button></a>
 
-            <a href=""><button>UPLOAD NEW PHOTO</button></a>
+            <a href="/admin/upload"><button>UPLOAD NEW PHOTO</button></a>
         </div>
 
         <div class="pagetitle-container"><h1 class="new-title">Create a New Article</h1></div>
@@ -18,96 +18,104 @@
 
 
 
+    <div class="admin-middle">
 
 
-    <form action="/admin/new" method="POST" class="admin-middle">
 
-        <fieldset>
-            <legend>Title</legend>
-            <input type="text" name="title" placeholder="Here is the Title of a Sample Article" class="text-input" required>
-        </fieldset>
+        <form action="/admin/new" method="POST" >
 
-        <fieldset class="categories-fieldset" >
-            <legend>Categories</legend>
+            <fieldset>
+                <legend>Title</legend>
+                <input type="text" name="title" placeholder="Here is the Title of a Sample Article" class="text-input" required>
+            </fieldset>
+    
+            <fieldset class="categories-fieldset" >
+                <legend>Categories</legend>
+    
+                <label for="">
+                    <input type="checkbox" name="categories" value="Industry">
+                    Industry
+                </label>
+    
+                <label for="">
+                    <input type="checkbox" name="categories" value="Regulatory">
+                    Regulatory
+                </label>
+    
+                <label for="">
+                    <input type="checkbox" name="categories" value="Academia">
+                    Research & Academia
+                </label>
+    
+                <label for="">
+                    <input type="checkbox" name="categories" value="Organizations">
+                    Professional Organizations
+                </label>
+    
+                <label for="">
+                    <input type="checkbox" name="categories" value="Education">
+                    Continuing Education
+                </label>
+    
+                <label for="">
+                    <input type="checkbox" name="categories" value="Technology">
+                    Products & Technology
+                </label>
+    
+                <label for="">
+                    <input type="checkbox" name="categories" value="Health">
+                    Health & Wellness
+                </label>
+                
+            </fieldset>
+    
+            <fieldset>
+                <legend>Source</legend>
+                <input type="text" placeholder="Sample News Network" name="source" class="text-input" required>
+            </fieldset>
+    
+            <fieldset>
+                <legend>Date</legend>
+                <input type="text" name="date" value="<%= today %>" class="text-input" required>
+            </fieldset>
+    
+            <fieldset>
+                <legend>Image</legend>
+    
+                <div class="image-select">
+    
+                    <% images.forEach(image => { %>
+    
+                        <label for="" class="image-option">
+                            <input type="radio" name="image" value="/img/<%= image %>">
+                            <img src="/img/<%= image %>" alt="<%= image %>">
+                        </label>
+    
+                    <% }) %>
+    
+                </div>
+    
+            </fieldset>
+    
+            <fieldset>
+                <legend>Summary</legend>
+                <textarea name="summary" id="summary" rows="10" class="text-input" required></textarea>
+            </fieldset>
+    
+            <fieldset>
+                <legend>Link</legend>
+                <input type="text" name="link" class="text-input" placeholder="http://www.fakenewssite.com/sample/article" required>
+            </fieldset>
+    
+            <div class="form-actions"><button type="submit">Submit New Article</button></div>
+    
+    
+        </form>
 
-            <label for="">
-                <input type="checkbox" name="categories" value="Industry">
-                Industry
-            </label>
-
-            <label for="">
-                <input type="checkbox" name="categories" value="Regulatory">
-                Regulatory
-            </label>
-
-            <label for="">
-                <input type="checkbox" name="categories" value="Academia">
-                Research & Academia
-            </label>
-
-            <label for="">
-                <input type="checkbox" name="categories" value="Organizations">
-                Professional Organizations
-            </label>
-
-            <label for="">
-                <input type="checkbox" name="categories" value="Education">
-                Continuing Education
-            </label>
-
-            <label for="">
-                <input type="checkbox" name="categories" value="Technology">
-                Products & Technology
-            </label>
-
-            <label for="">
-                <input type="checkbox" name="categories" value="Health">
-                Health & Wellness
-            </label>
-            
-        </fieldset>
-
-        <fieldset>
-            <legend>Source</legend>
-            <input type="text" placeholder="Sample News Network" name="source" class="text-input" required>
-        </fieldset>
-
-        <fieldset>
-            <legend>Date</legend>
-            <input type="text" name="date" value="<%= today %>" class="text-input" required>
-        </fieldset>
-
-        <fieldset>
-            <legend>Image</legend>
-
-            <div class="image-select">
-
-                <% images.forEach(image => { %>
-
-                    <label for="" class="image-option">
-                        <input type="radio" name="image" value="/img/<%= image %>">
-                        <img src="/img/<%= image %>" alt="<%= image %>">
-                    </label>
-
-                <% }) %>
-
-            </div>
-
-        </fieldset>
-
-        <fieldset>
-            <legend>Summary</legend>
-            <textarea name="summary" id="summary" rows="10" class="text-input" required></textarea>
-        </fieldset>
-
-        <fieldset>
-            <legend>Link</legend>
-            <input type="text" name="link" class="text-input" placeholder="http://www.fakenewssite.com/sample/article" required>
-        </fieldset>
-
-        <div class="form-actions"><button type="submit">Submit New Article</button></div>
 
 
-    </form>
+    </div>
+
+    
 
 </div>

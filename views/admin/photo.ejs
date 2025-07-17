@@ -24,15 +24,17 @@
 
 
 <div class="admin-middle">
-    <ul class="articles-list">
+    <ul class="admin-list">
 
         <% images.forEach(image => { %>
-            <li class="article-item">
+            <li class="admin-item">
 
 
                 <div class="item-left">
 
-                    <h4><%= image %></h4>
+                    <img src="/img/<%= image %>" alt="<%= image %>" class="photo-image">
+
+                    <h4 class="photo-path"><%= image %></h4>
 
                 </div>
 
@@ -44,7 +46,7 @@
                         <button class="edit-button">EDIT</button>
                     </a>
 
-                    <form action="" method="POST">
+                    <form action="/admin/photo/delete/<%= image %>" method="POST" class="delete-form">
                         <button type="submit" class="delete-button">DELETE</button>
                     </form>
 

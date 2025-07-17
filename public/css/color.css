@@ -158,3 +158,17 @@ body {
         background-color: var(--background-gray);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+footer {
+    border-top: var(--border-gray)
+}

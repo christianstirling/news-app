@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     try {
         console.log('page rendered')
         const articles = await Article.find({})
-        res.render('index', { articles })
+        res.render('main/index', { articles })
 
     } catch (err) {
         console.error(err)
