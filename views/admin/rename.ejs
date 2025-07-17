@@ -1,0 +1,47 @@
+<div class="rename-container">
+
+    <div class="rename-top admin-top">
+
+        <div class="pagebutton-container">
+            <a href="/admin/dashboard"><button class="">BACK TO DASHBOARD</button></a>
+
+            <a href="/admin/photo">
+                <button>BACK TO VIEW PHOTOS</button>
+            </a>
+        </div>
+
+        <div class="pagetitle-container"><h1 class="rename-title">Rename Selected Photo</h1></div>
+        
+        
+    </div>
+
+
+
+
+
+    <div class=" admin-middle edit-middle">
+
+        
+
+        <form class="rename-form" action="/admin/rename" method="POST">
+
+
+            <img src="/img/<%= image %>" alt="<%= image %>" class="photo-image"><br>
+            <h4 class="photo-path"><%= image %></h4><br><br>
+
+            <input type="hidden" name="oldName" id="oldName" value="<%= image %>">
+
+            <label for="filename">Enter the new name for the above image:</label><br>
+            <input type="text" name="newName" id="newName" required><br><br>
+
+            <button type="submit">Rename Image</button>
+        </form>
+
+
+
+    </div>
+
+
+    
+
+</div>

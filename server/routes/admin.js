@@ -387,7 +387,63 @@ router.post('/admin/photo/delete/:image', isAuthenticated, async (req, res) => {
             res.redirect('..')
         })
 
-    } catch {
+    } catch (err) {
+        console.error('Error', err)
+        res.status(500).send('Server error')
+    }
+})
+
+
+
+
+
+// rename GET route
+
+router.get('/admin/rename/:image', isAuthenticated, async (req, res) => {
+    const { image } = req.params
+
+    try {
+
+        res.render('admin/rename', {
+            layout: adminLayout,
+            image
+        })
+    } catch (err) {
+        console.error('Error', err)
+        res.status(500).send('Server error')
+    }
+})
+
+// rename POST
+
+router.post('/admin/rename', isAuthenticated, async (req, res) => {
+    console.log(req.body)
+    const { oldName, newName } = req.body
+
+    if (!oldName || !newName) {
+        return res.status(400).send('Missing name value')
+    }
+
+    const imgDir = path.join(__dirname, '../../public/img')
+    const extension = path.extname(oldName)
+    const oldPath = path.join(imgDir, oldName)
+    const newPath = path.join(imgDir, newName + extension)
+
+    try {
+
+        fs.rename(oldPath, newPath, (err) => {
+            if(err) {
+
+                console.error('Failed to rename image', err)
+                return res.status(500).json({ error: 'cannot rename image' })
+            }
+
+
+        console.log(`Image renamed successfully: ${newName+extension}`)
+        res.redirect('photo')
+
+        })
+    } catch (err) {
         console.error('Error', err)
         res.status(500).send('Server error')
     }
@@ -414,6 +470,10 @@ router.get('/admin/upload', isAuthenticated, async (req, res) => {
         res.status(500).send('Server error')
     }
 })
+
+
+
+
 
 router.post('/admin/upload', isAuthenticated, upload.single('imageFile'), (req, res) => {
 
