@@ -4,14 +4,14 @@
     <div class="upload-top admin-top">
 
         <div class="pagebutton-container">
-            <a href="/admin/dashboard"><button class="">BACK TO DASHBOARD</button></a>
+            <a href="/admin/dashboard"><button class="black-button">BACK TO DASHBOARD</button></a>
 
             <a href="/admin/photo">
-                <button>BACK TO VIEW PHOTOS</button>
+                <button class="black-button">BACK TO VIEW PHOTOS</button>
             </a>
         </div>
 
-        <div class="pagetitle-container"><h1 class="dashboard-title">Article Logo Photos</h1></div>
+        <div class="pagetitle-container"><h1 class="dashboard-title">Upload a New Photo</h1></div>
 
     </div>
 
@@ -22,10 +22,9 @@
             <label for="imageFile">Choose an image:</label><br>
             <input type="file" name="imageFile" id="imageFile" accept="image/*" required><br><br>
     
-            <label for="filename">Enter a name for the file (do not include an extension):</label><br>
-            <input type="text" name="filename" id="filename" required><br><br>
-    
-            <button type="submit">UPLOAD IMAGE</button>
+            <label for="filename">Enter a name for the file<br>(do not include an extension):</label><br>
+            <input type="text" name="filename" id="filename" class="text-input" required><br><br>
+            <div class="form-actions"><button type="submit" class="green-button">UPLOAD IMAGE</button></div>
     
         </form>
 

@@ -3,14 +3,14 @@
     <div class="rename-top admin-top">
 
         <div class="pagebutton-container">
-            <a href="/admin/dashboard"><button class="">BACK TO DASHBOARD</button></a>
+            <a href="/admin/dashboard"><button class="black-button">BACK TO DASHBOARD</button></a>
 
             <a href="/admin/photo">
-                <button>BACK TO VIEW PHOTOS</button>
+                <button class="black-button">BACK TO VIEW PHOTOS</button>
             </a>
         </div>
 
-        <div class="pagetitle-container"><h1 class="rename-title">Rename Selected Photo</h1></div>
+        <div class="pagetitle-container"><h1 class="rename-title">Rename the Selected Photo</h1></div>
         
         
     </div>
@@ -31,10 +31,11 @@
 
             <input type="hidden" name="oldName" id="oldName" value="<%= image %>">
 
-            <label for="filename">Enter the new name for the above image:</label><br>
-            <input type="text" name="newName" id="newName" required><br><br>
+            <label for="filename">Enter the new name for the above image<br>(do not include the extension):</label><br>
+            <input type="text" name="newName" id="newName" class="text-input" required><br><br>
 
-            <button type="submit">Rename Image</button>
+            <div class="form-actions"><button type="submit" class="blue-button">Rename Image</button></div>
+            
         </form>
 
 

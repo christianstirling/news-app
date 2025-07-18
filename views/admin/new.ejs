@@ -3,9 +3,9 @@
     <div class="new-top admin-top">
 
         <div class="pagebutton-container">
-            <a href="/admin/dashboard"><button class="">BACK TO DASHBOARD</button></a>
+            <a href="/admin/dashboard"><button class="black-button">BACK TO DASHBOARD</button></a>
 
-            <a href="/admin/upload"><button>UPLOAD NEW PHOTO</button></a>
+            <a href="/admin/upload"><button class="green-button">UPLOAD NEW PHOTO</button></a>
         </div>
 
         <div class="pagetitle-container"><h1 class="new-title">Create a New Article</h1></div>
@@ -88,7 +88,10 @@
     
                         <label for="" class="image-option">
                             <input type="radio" name="image" value="/img/<%= image %>">
-                            <img src="/img/<%= image %>" alt="<%= image %>">
+                            <div>
+                                <img src="/img/<%= image %>" alt="<%= image %>">
+                                <label for="image"><%= image %></label>
+                            </div>
                         </label>
     
                     <% }) %>
@@ -107,7 +110,7 @@
                 <input type="text" name="link" class="text-input" placeholder="http://www.fakenewssite.com/sample/article" required>
             </fieldset>
     
-            <div class="form-actions"><button type="submit">Submit New Article</button></div>
+            <div class="form-actions"><button type="submit" class="green-button">Submit New Article</button></div>
     
     
         </form>

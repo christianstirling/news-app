@@ -317,6 +317,7 @@ filterButtons.forEach(button => button.addEventListener('mouseleave', () => {
     }
 }))
 
+// upon entering or removing any text from the search bar
 searchInput.addEventListener('input', () => {
     searchText = searchInput.value.trim()
     console.log(searchText)
@@ -329,12 +330,17 @@ searchInput.addEventListener('input', () => {
     debouncedResetAndFetchArticles()
 })
 
+// prevents the enter key from doing anything basically
 searchInput.addEventListener('keydown', (event) => {
     if(event.key === 'Enter') {
         event.preventDefault()
         searchInput.blur()
     }
 })
+
+// sets an event listener on each of the AI Summary buttons that are generated in the main
+// app grid by attaching them to the card-containers as they are created
+
 
 container.addEventListener('click', (event) => {
     const button = event.target.closest('.flip-button')
@@ -355,20 +361,20 @@ container.addEventListener('click', (event) => {
         if (!wasExpanded) {
             setTimeout(() => {
 
-              const rect = button.getBoundingClientRect()
-              const scrollY = window.scrollY || window.pageYOffset
-          
-              // Scroll down when the button is pressed,
-              // so the button is 10px above the bottom of the screen
-              const targetScroll = scrollY + rect.bottom - window.innerHeight + 10
-          
-              window.scrollTo({
+                const rect = button.getBoundingClientRect()
+                const scrollY = window.scrollY || window.pageYOffset
+            
+                // Scroll down when the button is pressed,
+                // so the button is 10px above the bottom of the screen
+                const targetScroll = scrollY + rect.bottom - window.innerHeight + 10
+            
+                window.scrollTo({
                 top: targetScroll,
                 behavior: 'smooth'
-              })
+                })
 
             }, 50)
-          } else {
+        } else {
             setTimeout(() => {
 
                 // Scroll to the top of the card when the button is deactivated
@@ -379,8 +385,10 @@ container.addEventListener('click', (event) => {
                     behavior: 'smooth'
                 })
 
-              }, 50)
-          }
+            }, 50)
+        }
+        
+        
     }
 })
 

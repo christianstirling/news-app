@@ -5,10 +5,10 @@
 
     <div class="pagebutton-container">
 
-        <a href="/admin/dashboard"><button class="">BACK TO DASHBOARD</button></a>
+        <a href="/admin/dashboard"><button class="black-button">BACK TO DASHBOARD</button></a>
 
         <a href="/admin/upload">
-            <button>UPLOAD A NEW PHOTO</button>
+            <button class="green-button">UPLOAD A NEW PHOTO</button>
         </a>
 
     </div>
@@ -43,11 +43,11 @@
 
 
                     <a href="/admin/rename/<%= image %>">
-                        <button class="rename-button">RENAME</button>
+                        <button class="rename-button blue-button">RENAME</button>
                     </a>
 
                     <form action="/admin/photo/delete/<%= image %>" method="POST" class="delete-form">
-                        <button type="submit" class="delete-button">DELETE</button>
+                        <button type="submit" class="delete-button red-button">DELETE</button>
                     </form>
 
 

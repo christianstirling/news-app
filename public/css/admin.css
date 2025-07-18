@@ -42,6 +42,9 @@ button {
 
 
 
+
+
+
 /* log in */
 
 .login-container {
@@ -62,6 +65,8 @@ button {
 .admin-top {
     display: flex;
     flex-direction: column;
+
+    border-bottom: var(--border-gray) 1px solid;
 }
 
 .pagebutton-container {
@@ -71,8 +76,8 @@ button {
     justify-content: space-between;
     align-items: center;
 
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -84,8 +89,8 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -99,8 +104,18 @@ button {
     width: auto;
     padding: 0px 10px;
     border-radius: 3px;
-    background-color: black;
 }
+
+
+.admin-middle {
+    border-bottom: var(--border-gray) 1px solid;
+}
+
+
+
+
+
+
 
 
 
@@ -153,7 +168,6 @@ button {
     height: 30px;
     padding: 0px 10px;
     border-radius: 3px;
-    background-color: black;
 }
 
 /* photos dashboard */
@@ -168,10 +182,18 @@ button {
 
 /* upload photo */
 
-.upload-form {
+.upload-form, .rename-form {
     margin: 0px 10px 10px 10px;
     padding-top: 10px;
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -223,10 +245,24 @@ legend {
 }
 
 .image-option {
-    cursor: pointer;
+    /* cursor: pointer; */
     border: transparent  2px solid;
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
     transition: border 0.2s ease;
+}
+
+.image-option>input {
+    
+    cursor: pointer;
+}
+
+.image-option>div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 
@@ -237,9 +273,9 @@ legend {
     border-radius: 4px;
 }
 
-.image-option input:checked + img {
+/* .image-option input:checked + img {
     border: var(--green) 2px solid;
-}
+} */
 
 
 
@@ -247,6 +283,7 @@ legend {
 
 
 
+/* this centers the form buttons */
 
 .form-actions{
     display: flex;
@@ -255,6 +292,59 @@ legend {
     margin-bottom: 20px;
 }
 
-.form-actions button {
+
+
+
+
+
+
+
+
+
+/* ------------ rename + upload forms -- this shrinks and centers the form width --------- */
+
+.rename-container .admin-middle, .upload-container .admin-middle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.rename-container form, .upload-container form {
+    width: auto;
+
+}
+
+.rename-container input, .upload-container input {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------- button colors -------*/
+
+.red-button {
+    background-color: darkred;
+
+}
+
+.blue-button {
+    background-color: darkblue;
+
+}
+
+.green-button {
+    background-color: darkgreen;
+}
+
+.black-button {
     background-color: black;
 }

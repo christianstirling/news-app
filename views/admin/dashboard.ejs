@@ -6,16 +6,16 @@
 
     <div class="pagebutton-container">
         <a href="/admin/new" >
-            <button class="new-button">CREATE NEW ARTICLE</button>
+            <button class="new-button green-button">CREATE NEW ARTICLE</button>
         </a>
 
         <a href="/admin/photo">
-            <button>VIEW PHOTOS</button>
+            <button class="black-button">VIEW PHOTOS</button>
         </a>
 
     </div>
 
-    <div class="pagetitle-container"><h1 class="dashboard-title">Admin Dashboard</h1></div>
+    <div class="pagetitle-container"><h1 class="dashboard-title">News Articles Dashboard</h1></div>
 
     
 
@@ -43,11 +43,11 @@
 
 
                     <a href="/admin/edit/<%= article._id %>">
-                        <button class="edit-button">EDIT</button>
+                        <button class="edit-button blue-button">EDIT</button>
                     </a>
 
                     <form action="/admin/delete/<%= article._id %>" method="POST" class="delete-form">
-                        <button type="submit" class="delete-button">DELETE</button>
+                        <button type="submit" class="delete-button red-button">DELETE</button>
                     </form>
 
 
