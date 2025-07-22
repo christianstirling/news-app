@@ -130,7 +130,7 @@ function appendArticles(articles) {
                         </div>
 
                         <div class="image-container">
-                            <img class="card-image" src="/img/assp-logo.jpg"/>
+                            <img class="card-image" src="${a.image}"/>
                         </div>
 
                         <div class="title-container">
