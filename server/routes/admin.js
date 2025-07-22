@@ -1,31 +1,49 @@
-// Import the express package and then set up the express app: router
+// server/routes/admin.js
+
+/**
+ * Admin Routes – Ergo News
+ * 
+ * Handles authentication, article management (CRUD),
+ * and image management (upload, rename, delete).
+ */
 
 const express = require('express')
 const router = express.Router()
-
 const bcrypt = require('bcrypt')
-
-// Import the model for your news-app database documents
-const Article = require('../models/Article')
-const Admin = require('../models/Admin')
-
-const adminLayout = 'layouts/admin'
-
-
 const fs = require('fs')
 const path = require('path')
 
-router.get('/api/images', (req, res) => {
-    
-})
+
+
+
+// ==============================
+// Models and Config
+// ==============================
+
+const Article = require('../models/Article')
+const Admin = require('../models/Admin')
+const adminLayout = 'layouts/admin'
 
 
 
 
+// ==============================
+// Middleware: Auth Check
+// ==============================
+
+function isAuthenticated(req, res, next) { // middleware to check if the user is authenticated
+    if (req.session && req.session.isAdmin) {
+      return next()
+    }
+    res.redirect('/admin/login')
+}
 
 
 
 
+// ==============================
+// Multer Config for Image Uploads
+// ==============================
 
 const multer = require('multer')
 
@@ -43,48 +61,11 @@ const upload = multer({ storage })
 
 
 
+// ==============================
+// Admin Auth Routes
+// ==============================
 
-
-
-
-
-
-
-
-
-
-
-
-function isAuthenticated(req, res, next) { // middleware to check if the user is authenticated
-    if (req.session && req.session.isAdmin) {
-      return next()
-    }
-    res.redirect('/admin/login')
-}
-
-async function createArticle(title, categories, source, date, image, summary, link) {
-    Article.create({
-        image,
-        categories,
-        title,
-        source,
-        date,
-        summary,
-        link
-    })
-}
-
-
-
-
-
-
-
-
-
-// --------------- log in ----------------
-
-
+// GET: Login Page - views/admin/login
 router.get('/admin/login', (req, res) => {
     res.render('admin/login', {
         layout: adminLayout, 
@@ -92,13 +73,14 @@ router.get('/admin/login', (req, res) => {
     })
 })
 
+// POST: Login Form Submission
 router.post('/admin/login', async (req, res) => {
     const { username, password } = req.body
 
     try {
-        const admin = await Admin.findOne({ username }) // looks for admin user in db by username
+        const admin = await Admin.findOne({ username })
 
-        if(!admin) { // if cannot find username in db
+        if(!admin) {
             return res.render('admin/login', {
                 layout: adminLayout,
                 error: 'Invalid username or password'
@@ -124,12 +106,7 @@ router.post('/admin/login', async (req, res) => {
     }
 })
 
-
-
-
-
-// -------------- log out ----------------
-
+// POST: Logout
 router.post('/admin/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) { //check to see
@@ -140,6 +117,44 @@ router.post('/admin/logout', (req, res) => {
         res.redirect('/admin/login')
     })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.get('/api/images', (req, res) => {
+    
+})
+
+
+
+
+
+async function createArticle(title, categories, source, date, image, summary, link) {
+    Article.create({
+        image,
+        categories,
+        title,
+        source,
+        date,
+        summary,
+        link
+    })
+}
 
 
 
